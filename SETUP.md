@@ -35,6 +35,8 @@ flutter --version    # Should show Flutter 3.27.x, Dart 3.6.x
 git --version        # Any 2.x
 ```
 
+> **Important:** All tools above (XAMPP, Composer, Flutter, Android Studio, Git) must be installed **manually on your machine** before proceeding. This repository does not include installers or bundled runtimes. If you don't have XAMPP, download and install it from https://www.apachefriends.org first — the backend depends on PHP 8.2 and MariaDB 10.4 which XAMPP provides.
+
 ---
 
 ## 1. Clone the repository
