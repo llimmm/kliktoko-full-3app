@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: Roboto, system-ui, -apple-system, sans-serif; }
+    a { color: #7C3AED; } a:hover { color: #6D28D9; }
+  </style>
+</helmet>
+
+<div style="width: 360px; min-height: 800px; background: #F5F3FF; display: flex; flex-direction: column;">
+
+  <!-- Kepala: sapaan menggantikan jam raksasa berdetik -->
+  <div style="display: flex; align-items: center; gap: 12px; padding: 16px 16px 8px 16px;">
+    <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+      <div style="font-size: 20px; font-weight: 700; color: #18181B; letter-spacing: -0.2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Selamat sore, Nadia</div>
+      <div style="font-size: 13px; color: #52525B;">Kamis, 20 Agustus 2026 · 15.58</div>
+    </div>
+    <div style="width: 44px; height: 44px; border-radius: 22px; background: #EDE9FE; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: #7C3AED;">N</div>
+  </div>
+
+  <!-- Kartu shift: satu aksi berlabel, bukan panah hitam tanpa keterangan -->
+  <div style="margin: 12px 16px 0 16px; padding: 16px; background: #FFFFFF; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.078); display: flex; flex-direction: column; gap: 12px;">
+
+    <div style="display: flex; align-items: flex-start; gap: 8px;">
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+        <div style="font-size: 16px; font-weight: 700; color: #18181B;">Shift Sore</div>
+        <div style="font-size: 13px; color: #71717A;">15.00 – 22.00</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; padding: 4px 12px; background: #F4F4F5; border-radius: 12px;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span style="font-size: 12px; font-weight: 600; color: #15803D;">Sedang berlangsung</span>
+      </div>
+    </div>
+
+    <div style="height: 1px; background: #F4F4F5;"></div>
+
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <div style="font-size: 15px; font-weight: 600; color: #18181B;">Anda belum absen masuk</div>
+      <div style="display: flex; align-items: flex-start; gap: 8px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2.2" stroke-linecap="round" style="flex-shrink: 0; margin-top: 2px;"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><path d="M4 4l16 16"/></svg>
+        <span style="font-size: 12px; color: #B91C1C;">52,3 km dari toko — absen belum bisa dibuka</span>
+      </div>
+    </div>
+
+    <!-- Aksi utama: mati, tapi teksnya terbaca. Tombol nonaktif di app
+         sekarang putih di atas abu muda dan nyaris tak terbaca. -->
+    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; height: 48px; border-radius: 12px; background: #FFFFFF; border: 1px solid #E4E4E7;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#71717A" stroke-width="2.2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      <span style="font-size: 15px; font-weight: 600; color: #71717A;">Absen masuk</span>
+    </div>
+  </div>
+
+  <!-- Riwayat -->
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 24px 16px 8px 16px;">
+    <div style="font-size: 17px; font-weight: 700; color: #18181B;">Riwayat kehadiran</div>
+    <div style="min-height: 44px; display: flex; align-items: center; padding: 0 8px; margin-right: -8px; font-size: 13px; font-weight: 600; color: #7C3AED;">Lihat semua</div>
+  </div>
+
+  <div style="margin: 0 16px; padding: 4px 16px; background: #FFFFFF; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.078); display: flex; flex-direction: column;">
+    <div style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #F4F4F5;">
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+        <div style="font-size: 14px; font-weight: 600; color: #18181B;">19 Agustus</div>
+        <div style="font-size: 12px; color: #71717A;">Shift Pagi · 07.56 – 15.01</div>
+      </div>
+      <div style="padding: 4px 12px; background: #F4F4F5; border-radius: 12px; font-size: 12px; font-weight: 600; color: #15803D; flex-shrink: 0;">Tepat waktu</div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #F4F4F5;">
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+        <div style="font-size: 14px; font-weight: 600; color: #18181B;">18 Agustus</div>
+        <div style="font-size: 12px; color: #71717A;">Shift Pagi · 07.55 – 15.02</div>
+      </div>
+      <div style="padding: 4px 12px; background: #F4F4F5; border-radius: 12px; font-size: 12px; font-weight: 600; color: #15803D; flex-shrink: 0;">Tepat waktu</div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; padding: 12px 0;">
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+        <div style="font-size: 14px; font-weight: 600; color: #18181B;">15 Agustus</div>
+        <div style="font-size: 12px; color: #71717A;">Shift Sore · 15.21 – 22.04</div>
+      </div>
+      <div style="padding: 4px 12px; background: #F4F4F5; border-radius: 12px; font-size: 12px; font-weight: 600; color: #B45309; flex-shrink: 0;">Terlambat 21m</div>
+    </div>
+  </div>
+
+  <!-- Stok habis: kartu putih seperti yang lain. Di app sekarang kartu ini
+       hitam pekat, memutus ritme visual tanpa alasan semantik — yang genting
+       adalah stoknya, bukan kartunya. -->
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 24px 16px 8px 16px;">
+    <div style="font-size: 17px; font-weight: 700; color: #18181B;">Perlu ditambah</div>
+    <div style="min-height: 44px; display: flex; align-items: center; padding: 0 8px; margin-right: -8px; font-size: 13px; font-weight: 600; color: #7C3AED;">Lihat gudang</div>
+  </div>
+
+  <div style="margin: 0 16px 24px 16px; padding: 16px; background: #FFFFFF; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.078); display: flex; align-items: center; gap: 12px;">
+    <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(185,28,28,0.12); display: flex; align-items: center; justify-content: center;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2.2" stroke-linecap="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+    </div>
+    <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+      <div style="font-size: 14px; font-weight: 600; color: #18181B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Jaket Abu Sekolah</div>
+      <div style="font-size: 12px; color: #71717A;">Ukuran M habis · L 21 · XL 17</div>
+    </div>
+  </div>
+
+  <div style="flex-grow: 1;"></div>
+
+  <!-- Ruang untuk navigasi mengambang milik app -->
+  <div style="height: 110px;"></div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

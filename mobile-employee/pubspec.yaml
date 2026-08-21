@@ -1,0 +1,67 @@
+name: kliktoko
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ">=3.6.0 <3.29.2"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  get: ^4.6.5
+  permission_handler: ^11.0.1
+  intl: ^0.19.0
+  image_picker: ^0.8.8+1
+  shared_preferences: ^2.5.3
+  camera: ^0.10.5+9
+  google_mlkit_barcode_scanning: ^0.14.1
+  mobile_scanner: ^3.5.7
+  geolocator: ^11.0.0
+  geocoding: ^2.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: PlusJakartaSans
+      fonts:
+        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/PlusJakartaSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/PlusJakartaSans-ExtraBold.ttf
+          weight: 800
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/kliktokologo.png"
+  remove_alpha_ios: true
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/images/kliktokologo.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/images/kliktokologo.png"
+    icon_size: 48
+  macos:
+    generate: true
+    image_path: "assets/images/kliktokologo.png"
+
+    

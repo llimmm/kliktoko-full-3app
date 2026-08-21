@@ -1,0 +1,70 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "title": "Beranda",
+      "x": 0,
+      "y": 0,
+      "w": 360,
+      "h": 800
+    },
+    {
+      "file": "AbsensiLuar.dc.html",
+      "title": "Absensi — di luar jangkauan",
+      "x": 440,
+      "y": 0,
+      "w": 360,
+      "h": 800
+    },
+    {
+      "file": "AbsensiSiap.dc.html",
+      "title": "Absensi — siap absen",
+      "x": 880,
+      "y": 0,
+      "w": 360,
+      "h": 800
+    },
+    {
+      "file": "AbsensiMasuk.dc.html",
+      "title": "Absensi — sedang bekerja",
+      "x": 1320,
+      "y": 0,
+      "w": 360,
+      "h": 800
+    },
+    {
+      "file": "Start.dc.html",
+      "title": "Layar pembuka",
+      "x": 1760,
+      "y": 0,
+      "w": 360,
+      "h": 800
+    }
+  ],
+  "annotations": [
+    {
+      "id": "catatan-beranda",
+      "x": 0,
+      "y": -320,
+      "w": 360,
+      "text": "BERANDA\n\nJam raksasa berdetik diganti sapaan ringkas — karyawan sudah punya jam di status bar.\n\nPanah hitam tanpa label diganti satu tombol beraksi jelas.\n\nKartu stok habis jadi putih seperti kartu lain: yang genting stoknya, bukan kartunya."
+    },
+    {
+      "id": "catatan-absensi",
+      "x": 440,
+      "y": -320,
+      "w": 1240,
+      "text": "ABSENSI — TIGA KEADAAN\n\nJam tanpa detik. App sekarang menampilkan jam lengkap dengan detik; angka detik itu cara database menghindari shift bertumpang tindih, bukan sesuatu yang perlu dibaca karyawan.\n\nDi luar jangkauan: sekarang menyebut jaraknya (52,3 km) dan radius yang berlaku, plus jalan keluar \"Perbarui lokasi\". App sekarang hanya bilang \"di luar jangkauan\" lalu berhenti.\n\nTombol nonaktif dibuat terbaca — yang sekarang putih di atas abu muda."
+    },
+    {
+      "id": "catatan-start",
+      "x": 1760,
+      "y": -320,
+      "w": 360,
+      "text": "LAYAR PEMBUKA\n\nIlustrasi digambar sebagai SVG, bukan PNG. Tiga aset lama membawa palet gelap-hijau-limau yang terkunci di dalam berkas gambar, jadi tidak pernah bisa ikut disapu saat palet berubah.\n\nYang ini ikut."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}

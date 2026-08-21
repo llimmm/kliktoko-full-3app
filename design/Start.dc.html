@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: Roboto, system-ui, -apple-system, sans-serif; }
+    a { color: #7C3AED; } a:hover { color: #6D28D9; }
+  </style>
+</helmet>
+
+<div style="width: 360px; min-height: 800px; background: #F5F3FF; display: flex; flex-direction: column; padding: 0 24px; box-sizing: border-box;">
+
+  <div style="flex-grow: 2;"></div>
+
+  <!-- Ilustrasi toko seragam, digambar sebagai SVG.
+       Menggantikan tiga PNG lama (ssstart, kliktokos, ayomulai) yang membawa
+       palet gelap-hijau-limau: warnanya terkunci di dalam berkas gambar, jadi
+       tidak bisa ikut disapu saat palet berubah. Yang ini ikut. -->
+  <div style="display: flex; justify-content: center;">
+    <svg width="248" height="212" viewBox="0 0 248 212" fill="none" aria-label="Ilustrasi toko seragam KlikToko">
+
+      <!-- Bidang latar lembut -->
+      <circle cx="124" cy="100" r="92" fill="#EDE9FE"/>
+      <circle cx="196" cy="42" r="9" fill="#DDD6FE"/>
+      <circle cx="44" cy="150" r="6" fill="#DDD6FE"/>
+
+      <!-- Badan toko -->
+      <rect x="52" y="86" width="144" height="98" rx="10" fill="#FFFFFF"/>
+      <rect x="52" y="86" width="144" height="98" rx="10" stroke="#DDD6FE" stroke-width="2"/>
+
+      <!-- Tenda bergaris -->
+      <path d="M44 86 L60 54 H188 L204 86 Z" fill="#7C3AED"/>
+      <path d="M76 54 L68 86 H92 L96 54 Z" fill="#8B5CF6"/>
+      <path d="M124 54 L124 86 H148 L144 54 Z" fill="#8B5CF6"/>
+      <path d="M172 54 L176 86 H196 L188 54 Z" fill="#8B5CF6"/>
+      <path d="M44 86 H204" stroke="#6D28D9" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- Etalase kiri: gantungan + kemeja seragam -->
+      <rect x="68" y="100" width="60" height="60" rx="8" fill="#F5F3FF"/>
+      <path d="M98 110 a4 4 0 1 1 4 4 v3" stroke="#8B5CF6" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      <path d="M102 117 L86 128 v18 h32 v-18 Z" fill="#DDD6FE"/>
+      <path d="M102 117 L86 128 v18 h32 v-18 Z" stroke="#8B5CF6" stroke-width="2" stroke-linejoin="round" fill="none"/>
+      <path d="M102 117 v12" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+
+      <!-- Pintu -->
+      <rect x="140" y="112" width="42" height="72" rx="6" fill="#F5F3FF"/>
+      <rect x="140" y="112" width="42" height="72" rx="6" stroke="#DDD6FE" stroke-width="2"/>
+      <circle cx="172" cy="150" r="3.2" fill="#8B5CF6"/>
+
+      <!-- Label harga menggantung -->
+      <path d="M206 92 v20" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+      <path d="M214 112 l14 14 -14 14 -14 -14 Z" fill="#7C3AED"/>
+      <circle cx="214" cy="119" r="2.6" fill="#EDE9FE"/>
+
+      <!-- Alas -->
+      <path d="M36 184 H212" stroke="#DDD6FE" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div style="height: 32px;"></div>
+
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <div style="font-size: 40px; font-weight: 800; letter-spacing: -1px; line-height: 1.1;">
+      <span style="color: #18181B;">Klik</span><span style="color: #7C3AED;">Toko</span>
+    </div>
+    <div style="font-size: 15px; color: #52525B;">Untuk karyawan</div>
+  </div>
+
+  <div style="flex-grow: 3;"></div>
+
+  <!-- Kontrol geser: struktur yang sudah ada di kode, tanpa aset -->
+  <div style="display: flex; justify-content: center;">
+    <div style="position: relative; width: 288px; height: 62px; background: #FFFFFF; border: 1px solid #E4E4E7; border-radius: 31px; box-shadow: 0 4px 12px rgba(0,0,0,0.078); display: flex; align-items: center; justify-content: center;">
+      <span style="font-size: 16px; font-weight: 600; color: #52525B;">Ayo mulai</span>
+      <div style="position: absolute; left: 5px; top: 5px; width: 52px; height: 52px; border-radius: 26px; background: #7C3AED; box-shadow: 0 4px 12px rgba(0,0,0,0.078); display: flex; align-items: center; justify-content: center;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div style="height: 16px;"></div>
+  <div style="font-size: 13px; color: #52525B; text-align: center;">Geser untuk masuk</div>
+  <div style="height: 32px;"></div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+/*
+ * KlikToko design tokens — neobrutalism.
+ *
+ * Sumber kebenaran palet. Kembarannya untuk Flutter ada di tokens.dart;
+ * kalau mengubah nilai di sini, ubah juga di sana.
+ *
+ * Gayanya satu, dijalani sepenuhnya: border hitam tebal, bayangan keras tanpa
+ * blur, tipografi tebal, blok warna pekat. Tidak ada mode "lembut" yang
+ * berdampingan — permukaan setengah-brutal terbaca sebagai kesalahan, bukan
+ * pilihan.
+ *
+ * Warna DIJATAH: satu blok warna per halaman, untuk hal terpenting di halaman
+ * itu. Sisanya putih, hitam, dan garis.
+ */
+
+:root {
+    /* Aksen tunggal */
+    --violet-50: #f5f3ff;
+    --violet-100: #ede9fe;
+    --violet-200: #ddd6fe;
+    --violet-500: #8b5cf6;
+    --violet-600: #7c3aed;
+    --violet-700: #6d28d9;
+
+    /* Tangga netral: putih ke hitam */
+    --neutral-0: #ffffff;
+    --neutral-50: #fafafa;
+    --neutral-100: #f4f4f5;
+    --neutral-200: #e4e4e7;
+    --neutral-300: #d4d4d8;
+    --neutral-400: #a1a1aa;
+    --neutral-500: #71717a;
+    --neutral-600: #52525b;
+    --neutral-700: #3f3f46;
+    --neutral-800: #27272a;
+    --neutral-900: #18181b;
+    --black: #000000;
+
+    /*
+     * Keluarga blok neobrutal. SELALU dengan teks hitam dan border hitam.
+     * Angka di sebelahnya adalah kontras terhadap teks hitam.
+     *
+     * Terhadap putih nilai-nilai ini hanya 1,3-1,9:1, jadi teks putih di atas
+     * blok warna tidak pernah boleh. Terhadap latar halaman juga hanya
+     * 1,2-1,9:1 — sebagai bentuk, blok warna nyaris tak punya tepi sendiri.
+     * Border hitam di 19,15:1 yang membuatnya ada; border di sini menanggung
+     * beban, bukan hiasan.
+     */
+    --block-yellow: #fde047;  /* 15,93:1 thd hitam */
+    --block-mint:   #86efac;  /* 14,96:1 */
+    --block-lime:   #a3e635;  /* 13,93:1 */
+    --block-sky:    #7dd3fc;  /* 12,60:1 */
+    --block-orange: #fdba74;  /* 12,45:1 */
+    --block-coral:  #fca5a5;  /* 11,06:1 */
+    --block-muted:  var(--neutral-200); /* 16,55:1 */
+
+    /* Pemetaan makna — dipakai lewat nama ini, bukan lewat nama warnanya. */
+    --block-aman: var(--block-mint);
+    --block-menipis: var(--block-yellow);
+    --block-habis: var(--block-coral);
+    --block-catatan: var(--block-sky);
+
+    /*
+     * Semantik status stok untuk TEKS dan ikon garis. Sengaja tidak memakai
+     * ungu: ini menyampaikan data (habis / menipis / aman), bukan identitas
+     * merek. Sebagai ISIAN pakai keluarga --block-* di atas, yang jauh lebih
+     * terbaca.
+     */
+    --success: #15803d;
+    --warning: #b45309;
+    --danger: #b91c1c;
+    --info: #0369a1;
+
+    /* ---- Alias ke nama yang sudah dipakai admin.css & seluruh Blade ---- */
+    --primary-color: var(--violet-600);
+    --primary-hover: var(--violet-700);
+    --secondary-color: var(--neutral-600);
+    --success-color: var(--success);
+    --warning-color: var(--warning);
+    --danger-color: var(--danger);
+    --info-color: var(--info);
+
+    --light-bg: var(--violet-50);
+    --card-bg: var(--neutral-0);
+
+    /*
+     * Border hitam, bukan abu. 43 aturan di admin.css membaca variabel ini,
+     * jadi satu suntingan menghitamkan seluruh panel sekaligus. Ketebalannya
+     * datang dari --bs-border-width di bawah.
+     */
+    --border-color: var(--black);
+    --border-width: 3px;
+
+    --text-primary: var(--neutral-900);
+    /* neutral-500 gagal di atas latar ungu (4,41:1); neutral-600 = 7,05:1. */
+    --text-secondary: var(--neutral-600);
+
+    /*
+     * Bayangan bergeser tanpa blur.
+     *
+     * Sebelumnya blur lembut pada hitam 5-8%. Kartu putih di atas latar
+     * halaman hanya berbeda 1,10:1, jadi tepi kartu ditopang sepenuhnya oleh
+     * bayangan itu — sesuatu di ambang terlihat. Sekarang tepinya dipikul
+     * border hitam di 19,15:1 dan bayangannya memberi ketinggian, bukan batas.
+     *
+     * Angka 4px dipertahankan karena sudah dipakai KtBrutal di tokens.dart.
+     */
+    --shadow-sm: 2px 2px 0 0 var(--black);
+    --shadow-md: 4px 4px 0 0 var(--black);
+    --shadow-lg: 6px 6px 0 0 var(--black);
+    --shadow-xl: 8px 8px 0 0 var(--black);
+
+    /* Radius mengetat: sudut terlalu bulat melunakkan border tebalnya. */
+    --border-radius: 12px;
+    --border-radius-sm: 8px;
+
+    /* craft-floor: pelonggaran keluar cepat, bukan pantulan elastis. */
+    --transition: all 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+
+    /*
+     * Cincin fokus. Hitam pekat, bukan ungu transparan: di atas border yang
+     * sudah hitam, cincin ungu 25% tidak terbaca sebagai perubahan keadaan.
+     * Aksesibilitas — jangan dihapus demi estetika.
+     */
+    --focus-ring: 0 0 0 3px var(--violet-200), 0 0 0 6px var(--violet-600);
+}
+
+/*
+ * Bootstrap 5.3 memakai paletnya sendiri (--bs-*), yang tidak ikut variabel di
+ * atas. Blok ini mengarahkan komponen Bootstrap ke bahasa KlikToko.
+ * Harus dimuat SESUDAH bootstrap.min.css.
+ */
+:root {
+    --bs-primary: #7c3aed;
+    --bs-primary-rgb: 124, 58, 237;
+    --bs-link-color: #6d28d9;
+    --bs-link-color-rgb: 109, 40, 217;
+    --bs-link-hover-color: #7c3aed;
+    --bs-border-color: #000000;
+    --bs-border-width: 3px;
+    --bs-border-radius: 12px;
+    --bs-border-radius-sm: 8px;
+    --bs-border-radius-lg: 12px;
+    --bs-body-color: #18181b;
+    --bs-body-bg: #f5f3ff;
+    --bs-secondary-color: #52525b;
+}
+
+.btn-primary {
+    --bs-btn-bg: #7c3aed;
+    --bs-btn-border-color: #000000;
+    --bs-btn-hover-bg: #6d28d9;
+    --bs-btn-hover-border-color: #000000;
+    --bs-btn-active-bg: #6d28d9;
+    --bs-btn-active-border-color: #000000;
+    /* neutral-600 di atas neutral-200 = 6,09:1. Yang lama (neutral-400 di atas
+       neutral-400) tidak pernah terbaca sebagai tombol mati maupun hidup. */
+    --bs-btn-disabled-bg: #e4e4e7;
+    --bs-btn-disabled-color: #52525b;
+    --bs-btn-disabled-border-color: #000000;
+}
+
+.btn-outline-primary {
+    --bs-btn-color: #6d28d9;
+    --bs-btn-border-color: #000000;
+    --bs-btn-hover-bg: #7c3aed;
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-hover-border-color: #000000;
+    --bs-btn-active-bg: #6d28d9;
+    --bs-btn-active-border-color: #000000;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--violet-600);
+    box-shadow: var(--focus-ring);
+}
+
+/*
+ * Utilitas neobrutal.
+ *
+ * Dulu bernama .u-bold-* dan hanya dipakai di zona uang app kasir. Namanya
+ * berganti karena cakupannya berganti: ini bukan mode khusus lagi, melainkan
+ * bentuk bawaan permukaan. Nama lama dipertahankan sebagai alias.
+ */
+.u-brutal-surface,
+.u-bold-surface {
+    background: var(--card-bg);
+    border: var(--border-width) solid var(--black);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+}
+
+.u-brutal-block {
+    border: var(--border-width) solid var(--black);
+    border-radius: var(--border-radius-sm);
+    color: var(--black);
+    font-weight: 700;
+}
+
+.u-brutal-action,
+.u-bold-action {
+    background: var(--violet-600);
+    color: var(--neutral-0);
+    border: var(--border-width) solid var(--black);
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-md);
+    font-weight: 700;
+    min-height: 56px;
+    padding: 0 1.5rem;
+    transition: transform 0.06s ease, box-shadow 0.06s ease;
+}
+
+/*
+ * Ditekan: permukaannya bergeser ke tempat bayangannya dan bayangannya hilang,
+ * jadi tombolnya terasa benar-benar tertekan ke bawah. Neobrutalism membuang
+ * elevasi lembut, jadi tanpa ini tidak ada umpan balik sentuh sama sekali.
+ */
+.u-brutal-action:active,
+.u-bold-action:active,
+.u-brutal-surface:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 0 var(--black);
+}
+
+:where(a, button, input, select, textarea):focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+/*
+ * Gerak dihormati. craft-floor menuntut satu momen yang disengaja, bukan efek
+ * yang bertaburan — dan sistem yang meminta gerak dikurangi harus dituruti.
+ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

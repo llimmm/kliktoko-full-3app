@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Management - Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .demo-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .demo-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #1e7e34;
+        }
+
+        .coordinates-display {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .map-placeholder {
+            height: 300px;
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 16px;
+            margin: 15px 0;
+        }
+
+        .api-test {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+
+        .api-test h4 {
+            margin-top: 0;
+            color: #495057;
+        }
+
+        .api-test pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗺️ Location Management Demo</h1>
+            <p>Demo untuk testing location management tanpa Google Maps API</p>
+        </div>
+
+        <!-- API Configuration -->
+        <div class="demo-section">
+            <div class="demo-title">🔧 API Configuration</div>
+            <div class="form-group">
+                <label class="form-label">Google Maps API Key:</label>
+                <input type="text" class="form-input" id="apiKey" placeholder="Enter your Google Maps API key">
+                <small style="color: #666;">Get your API key from <a href="https://console.cloud.google.com/"
+                        target="_blank">Google Cloud Console</a></small>
+            </div>
+            <button class="btn" onclick="testApiKey()">Test API Key</button>
+            <div id="apiStatus"></div>
+        </div>
+
+        <!-- Manual Location Input -->
+        <div class="demo-section">
+            <div class="demo-title">📍 Manual Location Input</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Location Name:</label>
+                    <input type="text" class="form-input" id="locationName" placeholder="Office Location">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Radius (meters):</label>
+                    <input type="number" class="form-input" id="radius" value="50" min="1" max="10000">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Latitude:</label>
+                    <input type="number" class="form-input" id="latitude" step="any" placeholder="-6.753417">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Longitude:</label>
+                    <input type="number" class="form-input" id="longitude" step="any" placeholder="110.843639">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Address:</label>
+                <input type="text" class="form-input" id="address" placeholder="Jl. Contoh No. 123, Semarang">
+            </div>
+            <button class="btn btn-success" onclick="saveLocation()">Save Location</button>
+        </div>
+
+        <!-- Coordinates Display -->
+        <div class="demo-section">
+            <div class="demo-title">📊 Coordinates Display</div>
+            <div class="coordinates-display">
+                <div><strong>Latitude:</strong> <span id="displayLat">Not set</span></div>
+                <div><strong>Longitude:</strong> <span id="displayLng">Not set</span></div>
+                <div><strong>DMS Format:</strong> <span id="displayDMS">Not set</span></div>
+                <div><strong>Google Maps URL:</strong> <a href="#" id="mapsUrl" target="_blank">Not set</a></div>
+            </div>
+        </div>
+
+        <!-- Map Placeholder -->
+        <div class="demo-section">
+            <div class="demo-title">🗺️ Map Integration</div>
+            <div class="map-placeholder" id="mapPlaceholder">
+                Google Maps akan muncul di sini setelah API key dikonfigurasi
+            </div>
+            <button class="btn" onclick="loadGoogleMaps()">Load Google Maps</button>
+        </div>
+
+        <!-- API Testing -->
+        <div class="demo-section">
+            <div class="demo-title">🧪 API Testing</div>
+            <div class="api-test">
+                <h4>Test API Endpoints:</h4>
+                <pre id="apiTestResults">Click "Test API" to see results...</pre>
+                <button class="btn" onclick="testApiEndpoints()">Test API Endpoints</button>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="demo-section">
+            <div class="demo-title">⚡ Quick Actions</div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn" onclick="setDefaultLocation()">Set Default (Semarang)</button>
+                <button class="btn" onclick="setJakartaLocation()">Set Jakarta</button>
+                <button class="btn" onclick="setSurabayaLocation()">Set Surabaya</button>
+                <button class="btn" onclick="getCurrentLocation()">Get My Location</button>
+                <button class="btn" onclick="clearForm()">Clear Form</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentLocation = null;
+
+        // Test API Key
+        function testApiKey() {
+            const apiKey = document.getElementById('apiKey').value;
+            const statusDiv = document.getElementById('apiStatus');
+
+            if (!apiKey) {
+                statusDiv.innerHTML = '<div class="status status-error">Please enter API key</div>';
+                return;
+            }
+
+            // Test API key by loading Google Maps
+            const script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=onGoogleMapsLoaded`;
+            script.onerror = function () {
+                statusDiv.innerHTML = '<div class="status status-error">API key is invalid or has errors</div>';
+            };
+            document.head.appendChild(script);
+        }
+
+        // Google Maps loaded callback
+        function onGoogleMapsLoaded() {
+            document.getElementById('apiStatus').innerHTML = '<div class="status status-success">✅ API key is valid! Google Maps loaded successfully.</div>';
+            loadGoogleMaps();
+        }
+
+        // Load Google Maps
+        function loadGoogleMaps() {
+            const apiKey = document.getElementById('apiKey').value;
+            if (!apiKey) {
+                alert('Please enter API key first');
+                return;
+            }
+
+            const mapPlaceholder = document.getElementById('mapPlaceholder');
+            mapPlaceholder.innerHTML = `
+                <div style="text-align: center;">
+                    <div style="margin-bottom: 10px;">🗺️ Loading Google Maps...</div>
+                    <div style="font-size: 12px; color: #666;">API Key: ${apiKey.substring(0, 10)}...</div>
+                </div>
+            `;
+
+            // Load Google Maps script
+            if (typeof google === 'undefined') {
+                const script = document.createElement('script');
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap`;
+                document.head.appendChild(script);
+            } else {
+                initMap();
+            }
+        }
+
+        // Initialize map
+        function initMap() {
+            const mapPlaceholder = document.getElementById('mapPlaceholder');
+            const lat = parseFloat(document.getElementById('latitude').value) || -6.753417;
+            const lng = parseFloat(document.getElementById('longitude').value) || 110.843639;
+
+            mapPlaceholder.innerHTML = '<div id="map" style="height: 300px; border-radius: 8px;"></div>';
+
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: lat, lng: lng },
+                zoom: 15
+            });
+
+            const marker = new google.maps.Marker({
+                position: { lat: lat, lng: lng },
+                map: map,
+                draggable: true
+            });
+
+            // Update coordinates when marker is dragged
+            marker.addListener('dragend', function () {
+                const position = marker.getPosition();
+                document.getElementById('latitude').value = position.lat();
+                document.getElementById('longitude').value = position.lng();
+                updateCoordinatesDisplay();
+            });
+
+            // Add click listener to map
+            map.addListener('click', function (event) {
+                marker.setPosition(event.latLng);
+                document.getElementById('latitude').value = event.latLng.lat();
+                document.getElementById('longitude').value = event.latLng.lng();
+                updateCoordinatesDisplay();
+            });
+        }
+
+        // Save location
+        function saveLocation() {
+            const locationData = {
+                name: document.getElementById('locationName').value,
+                latitude: document.getElementById('latitude').value,
+                longitude: document.getElementById('longitude').value,
+                radius: document.getElementById('radius').value,
+                address: document.getElementById('address').value
+            };
+
+            console.log('Location data:', locationData);
+            alert('Location saved! Check console for data.');
+        }
+
+        // Update coordinates display
+        function updateCoordinatesDisplay() {
+            const lat = document.getElementById('latitude').value;
+            const lng = document.getElementById('longitude').value;
+
+            if (lat && lng) {
+                document.getElementById('displayLat').textContent = lat;
+                document.getElementById('displayLng').textContent = lng;
+
+                // Convert to DMS
+                const dms = convertToDMS(parseFloat(lat), parseFloat(lng));
+                document.getElementById('displayDMS').textContent = dms;
+
+                // Google Maps URL
+                const mapsUrl = `https://www.google.com/maps?q=${lat},${lng}`;
+                document.getElementById('mapsUrl').href = mapsUrl;
+                document.getElementById('mapsUrl').textContent = 'View on Google Maps';
+            }
+        }
+
+        // Convert decimal to DMS
+        function convertToDMS(lat, lng) {
+            const latDir = lat >= 0 ? 'N' : 'S';
+            const lngDir = lng >= 0 ? 'E' : 'W';
+
+            const latAbs = Math.abs(lat);
+            const lngAbs = Math.abs(lng);
+
+            const latDeg = Math.floor(latAbs);
+            const latMin = Math.floor((latAbs - latDeg) * 60);
+            const latSec = ((latAbs - latDeg) * 60 - latMin) * 60;
+
+            const lngDeg = Math.floor(lngAbs);
+            const lngMin = Math.floor((lngAbs - lngDeg) * 60);
+            const lngSec = ((lngAbs - lngDeg) * 60 - lngMin) * 60;
+
+            return `${latDeg}°${latMin}'${latSec.toFixed(1)}"${latDir}, ${lngDeg}°${lngMin}'${lngSec.toFixed(1)}"${lngDir}`;
+        }
+
+        // Test API endpoints
+        function testApiEndpoints() {
+            const results = document.getElementById('apiTestResults');
+            results.textContent = 'Testing API endpoints...\n\n';
+
+            // Test active location endpoint
+            fetch('/api/location/active')
+                .then(response => response.json())
+                .then(data => {
+                    results.textContent += '✅ GET /api/location/active\n';
+                    results.textContent += JSON.stringify(data, null, 2) + '\n\n';
+                })
+                .catch(error => {
+                    results.textContent += '❌ GET /api/location/active\n';
+                    results.textContent += 'Error: ' + error.message + '\n\n';
+                });
+
+            // Test location check endpoint
+            fetch('/api/location/check', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    latitude: -6.753417,
+                    longitude: 110.843639
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    results.textContent += '✅ POST /api/location/check\n';
+                    results.textContent += JSON.stringify(data, null, 2) + '\n\n';
+                })
+                .catch(error => {
+                    results.textContent += '❌ POST /api/location/check\n';
+                    results.textContent += 'Error: ' + error.message + '\n\n';
+                });
+        }
+
+        // Quick actions
+        function setDefaultLocation() {
+            document.getElementById('latitude').value = -6.753417;
+            document.getElementById('longitude').value = 110.843639;
+            document.getElementById('address').value = 'Jl. Contoh No. 123, Semarang, Jawa Tengah';
+            updateCoordinatesDisplay();
+        }
+
+        function setJakartaLocation() {
+            document.getElementById('latitude').value = -6.2088;
+            document.getElementById('longitude').value = 106.8456;
+            document.getElementById('address').value = 'Jakarta, Indonesia';
+            updateCoordinatesDisplay();
+        }
+
+        function setSurabayaLocation() {
+            document.getElementById('latitude').value = -7.2575;
+            document.getElementById('longitude').value = 112.7521;
+            document.getElementById('address').value = 'Surabaya, Jawa Timur, Indonesia';
+            updateCoordinatesDisplay();
+        }
+
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    document.getElementById('latitude').value = position.coords.latitude;
+                    document.getElementById('longitude').value = position.coords.longitude;
+                    updateCoordinatesDisplay();
+                }, function (error) {
+                    alert('Error getting location: ' + error.message);
+                });
+            } else {
+                alert('Geolocation is not supported by this browser.');
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('locationName').value = '';
+            document.getElementById('latitude').value = '';
+            document.getElementById('longitude').value = '';
+            document.getElementById('radius').value = '50';
+            document.getElementById('address').value = '';
+            updateCoordinatesDisplay();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            setDefaultLocation();
+        });
+    </script>
+</body>
+
+</html>
+

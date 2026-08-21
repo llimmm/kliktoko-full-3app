@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- USB HID Barcode Scanner Devices -->
+    <!-- Generic HID Keyboard devices (most barcode scanners work as HID keyboard) -->
+    <usb-device class="3" /> <!-- HID Class -->
+    
+    <!-- Specific iware scanner devices -->
+    <usb-device vendor-id="0x0483" /> <!-- STMicroelectronics (common for iware) -->
+    <usb-device vendor-id="0x04b4" /> <!-- Cypress (common for iware) -->
+    <usb-device vendor-id="0x1a86" /> <!-- QinHeng Electronics (common for iware) -->
+    
+    <!-- Generic USB HID devices -->
+    <usb-device class="3" subclass="1" /> <!-- HID Boot Interface Subclass -->
+    
+    <!-- Allow all USB HID devices for maximum compatibility -->
+    <usb-device class="3" />
+</resources> 

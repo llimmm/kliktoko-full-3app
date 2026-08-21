@@ -1,0 +1,115 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Redirect all requests to public folder
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    # Prevent clickjacking
+    Header always append X-Frame-Options SAMEORIGIN
+    
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options nosniff
+    
+    # Enable XSS protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Prevent access to sensitive files
+<Files ".env">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "composer.json">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "composer.lock">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "package.json">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "package-lock.json">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Prevent access to log files
+<Files "*.log">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Prevent access to backup files
+<Files "*.bak">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Prevent access to cache files
+<Files "*.cache">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Disable directory browsing
+Options -Indexes
+
+# Allow access to font files
+<FilesMatch "\.(woff|woff2|eot|ttf|otf)$">
+    Header set Access-Control-Allow-Origin "*"
+</FilesMatch>
+
+# Prevent access to storage and vendor directories
+<Directory "storage">
+    Order allow,deny
+    Deny from all
+</Directory>
+
+<Directory "vendor">
+    Order allow,deny
+    Deny from all
+</Directory>
+
+<Directory "bootstrap">
+    Order allow,deny
+    Deny from all
+</Directory>
+
+<Directory "app">
+    Order allow,deny
+    Deny from all
+</Directory>
+
+<Directory "config">
+    Order allow,deny
+    Deny from all
+</Directory>
+
+<Directory "database">
+    Order allow,deny
+    Deny from all
+</Directory>
+
+<Directory "resources">
+    Order allow,deny
+    Deny from all
+</Directory>
+
+<Directory "routes">
+    Order allow,deny
+    Deny from all
+</Directory>
