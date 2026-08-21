@@ -12,30 +12,39 @@ This repository contains three applications sharing one Laravel backend:
 
 ## Prerequisites
 
-Install these **exact versions** to avoid compatibility issues:
+### Must install manually (GUI installer)
 
 | Tool | Version | Download |
 |---|---|---|
 | **XAMPP** | 8.2.x (bundles PHP 8.2 + MariaDB 10.4) | https://www.apachefriends.org |
-| **PHP** | 8.2+ (bundled with XAMPP) | Included in XAMPP |
-| **MariaDB** | 10.4+ (bundled with XAMPP) | Included in XAMPP |
-| **Composer** | 2.x | https://getcomposer.org |
-| **Flutter** | 3.27.1 (Dart 3.6.0) | https://docs.flutter.dev/get-started/install |
 | **Android Studio** | Latest (for SDK + emulator) | https://developer.android.com/studio |
-| **Git** | 2.x+ | https://git-scm.com |
-| **ADB** | Latest (for physical tablet via USB) | Included in Android SDK Platform-Tools |
+
+> **XAMPP is the only tool that requires manual installation.** Download the installer from https://www.apachefriends.org, run it, and ensure PHP 8.2 and MariaDB 10.4 are selected during setup. Android Studio is needed for the Android SDK and emulator.
+
+### Can install via command line
+
+These can be installed by your AI agent or manually:
+
+| Tool | Version | Install command |
+|---|---|---|
+| **Git** | 2.x+ | `winget install Git.Git` |
+| **Composer** | 2.x | `winget install Composer.Composer` |
+| **Flutter** | 3.27.1 (Dart 3.6.0) | `git clone https://github.com/flutter/flutter.git -b 3.27.1` then add to PATH |
+
+Or download manually:
+- Git: https://git-scm.com
+- Composer: https://getcomposer.org
+- Flutter: https://docs.flutter.dev/get-started/install
 
 ### Verify installations
 
 ```bash
-php --version        # Should show PHP 8.2.x
-mysql --version      # Should show MariaDB 10.4.x
+php --version        # Should show PHP 8.2.x (from XAMPP)
+mysql --version      # Should show MariaDB 10.4.x (from XAMPP)
 composer --version   # Should show Composer 2.x
 flutter --version    # Should show Flutter 3.27.x, Dart 3.6.x
 git --version        # Any 2.x
 ```
-
-> **Important:** All tools above (XAMPP, Composer, Flutter, Android Studio, Git) must be installed **manually on your machine** before proceeding. This repository does not include installers or bundled runtimes. If you don't have XAMPP, download and install it from https://www.apachefriends.org first — the backend depends on PHP 8.2 and MariaDB 10.4 which XAMPP provides.
 
 ---
 
