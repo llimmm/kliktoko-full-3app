@@ -17,9 +17,8 @@ This repository contains three applications sharing one Laravel backend:
 | Tool | Version | Download |
 |---|---|---|
 | **XAMPP** | 8.2.x (bundles PHP 8.2 + MariaDB 10.4) | https://www.apachefriends.org |
-| **Android Studio** | Latest (for SDK + emulator) | https://developer.android.com/studio |
 
-> **XAMPP is the only tool that requires manual installation.** Download the installer from https://www.apachefriends.org, run it, and ensure PHP 8.2 and MariaDB 10.4 are selected during setup. Android Studio is needed for the Android SDK and emulator.
+> **XAMPP is the only tool that requires manual installation.** Download the installer from https://www.apachefriends.org, run it, and ensure PHP 8.2 and MariaDB 10.4 are selected during setup.
 
 ### Can install via command line
 
@@ -35,6 +34,34 @@ Or download manually:
 - Git: https://git-scm.com
 - Composer: https://getcomposer.org
 - Flutter: https://docs.flutter.dev/get-started/install
+
+### Android SDK (optional)
+
+Android Studio is **NOT required**. You only need the Android SDK if you want to build/run on Android devices. Three options:
+
+| Option | Best for | What to install |
+|---|---|---|
+| **Physical device via USB** (recommended) | Any PC | Android SDK command-line tools only — no emulator needed |
+| **Chrome browser** | Low-end PC | Nothing extra — Flutter supports Chrome out of the box |
+| **Android Studio + emulator** | High-end PC | Full Android Studio from https://developer.android.com/studio |
+
+**Lightest path (low-end PC):** Skip Android entirely. Use a physical Android device via USB cable, or test on Chrome:
+
+```bash
+flutter run -d chrome --dart-define=KLIKTOKO_API=http://localhost:8000
+```
+
+**If you want Android SDK without Android Studio:**
+
+```bash
+# Install command-line tools only
+winget install Google.AndroidCommandLineTools
+
+# Then install SDK components
+sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+```
+
+> **Emulator warning:** The Android emulator is heavy (2-4 GB RAM). On low-end PCs, always use a physical device via USB instead.
 
 ### Verify installations
 
@@ -153,12 +180,17 @@ flutter pub get
 
 ### 3.2 Run the app
 
+**Chrome (no Android needed, good for low-end PC):**
+```bash
+flutter run -d chrome --dart-define=KLIKTOKO_API=http://localhost:8000
+```
+
 **Emulator:**
 ```bash
 flutter run --dart-define=KLIKTOKO_API=http://10.0.2.2:8000
 ```
 
-**Physical tablet via USB:**
+**Physical tablet via USB (recommended):**
 ```bash
 # Set up ADB reverse so tablet can reach localhost:8000
 adb reverse tcp:8000 tcp:8000
@@ -185,12 +217,17 @@ flutter pub get
 
 ### 4.2 Run the app
 
+**Chrome (no Android needed, good for low-end PC):**
+```bash
+flutter run -d chrome --dart-define=KLIKTOKO_API=http://localhost:8000
+```
+
 **Emulator:**
 ```bash
 flutter run --dart-define=KLIKTOKO_API=http://10.0.2.2:8000
 ```
 
-**Physical tablet via USB:**
+**Physical tablet via USB (recommended):**
 ```bash
 adb reverse tcp:8000 tcp:8000
 flutter run --dart-define=KLIKTOKO_API=http://localhost:8000
